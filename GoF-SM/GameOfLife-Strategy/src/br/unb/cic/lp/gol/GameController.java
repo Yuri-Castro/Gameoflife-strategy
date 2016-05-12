@@ -28,11 +28,6 @@ public class GameController implements IGameController {
 	private static final boolean TRUE = true;
 	private static final int TIME = 2500;
 	
-	/*@Inject
-	public GameController(GameEngine engine, GameView board) {
-		this.engine = engine;
-		this.board = board;
-	}*/
 	
 	public IGameEngine getEngine() {
 		return engine;
@@ -62,7 +57,6 @@ public class GameController implements IGameController {
 	}
 	
 	public void halt() {
-		//oops, nao muito legal fazer sysout na classe Controller
 		System.out.println("\n \n");
 		statistics.display();
 		System.exit(0);

@@ -64,14 +64,7 @@ public class GameView implements IGameView {
 	 * possivelmente como uma resposta a uma atualizacao do jogo.
 	 */
 	public void update() {// TODO apagar impressao da tela
-		/*
-		 * printFirstRow(); printLine(); for (int i = 0; i < engine.getHeight();
-		 * i++) { // int i = 1; i < (engine.getHeight() - 1); i++ for (int j =
-		 * 0; j < engine.getWidth(); j++) { // int j = 1; j <
-		 * (engine.getHeight() - 1); j++ System.out.print(engine.isCellAlive(i,
-		 * j) ? ALIVE_CELL : DEAD_CELL); } System.out.println("   " + i);
-		 * printLine(); } printOptions();
-		 */
+
 		try {
 			UIManager.setLookAndFeel(UIManager
 					.getCrossPlatformLookAndFeelClassName());
@@ -91,7 +84,7 @@ public class GameView implements IGameView {
 								+ "     1.3) Caso a opcaoo leve ao tabuleiro, havera duas configuracoess possiveis:\n"
 								+ "         1.3.1) A primeira pode-se gerar uma configuracoes das celulas atraves de clicks do mouse. Concluida a configuracao pode-se voltar ao menu.\n"
 								+ "         1.3.2) A segunda não permite que o estado da célula seja alterado e permite controlar o calculo das geracoes e voltar para o menu.\n"
-								+ "     1.4) e possivel escolher a regra que sera� utilizada para o calculo dos proximos estados.\n"
+								+ "     1.4) e possivel escolher a regra que sera� utilizada para o calculo dos proximos estados.\n"
 								+ "     1.5) Pode-se escolher a forma de execucao: sem interrupcoes ou controlada pelo usuario.\n"
 								+ "     1.6) Pode-se sair da aplicacao.\n\n"
 								+ " 2) REGRAS DO JOGO: A regra Conway e setada como default.\n"
@@ -109,7 +102,7 @@ public class GameView implements IGameView {
 								+ "         2.3.3) Em todos os outros casos a celula morre.\n\n"
 								+ "*****************************************************************************************************************************************************************************\n");
 
-		new ComboBox(engine, controller);
+		new ComboBox(engine, controller, engine.getStatistics());
 	}
 
 	public void update(int time) {
@@ -134,36 +127,6 @@ public class GameView implements IGameView {
 		}
 	}
 
-	/*
-	 * public void printOptions() { Scanner s = new Scanner(System.in); int
-	 * option; System.out.println("\n \n");
-	 * 
-	 * do { engine.chooseEstrategia();
-	 * 
-	 * System.out.println("Select one of the options: (" +
-	 * engine.getEstrategia().getName() + ")\n \n");
-	 * System.out.println("[1] Make a cell alive");
-	 * System.out.println("[2] Next generation");
-	 * 
-	 * System.out.println("[3] Conway"); System.out.println("[4] High Life");
-	 * 
-	 * System.out.println("[5] Automatic"); System.out.println("[6] Halt");
-	 * 
-	 * System.out.print("\n \n Option: ");
-	 * 
-	 * option = parseOption(s.nextLine()); } while (option < 1 || option > 6);
-	 * 
-	 * switch (option) { case MAKE_CELL_ALIVE: makeCellAlive(); break; case
-	 * NEXT_GENERATION: nextGeneration(); break;
-	 * 
-	 * case CONWAY : // Usar setter se nao der certo;
-	 * engine.chooseEstrategia(CONWAY); update(); break; case HIGH_LIFE :
-	 * engine.chooseEstrategia(HIGH_LIFE); update(); break;
-	 * 
-	 * case AUTOMATIC: nonStopGame(); break; case HALT: halt(); }
-	 * 
-	 * }
-	 */
 
 	public void nonStopGame() {
 		controller.nonStopGame();

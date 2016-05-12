@@ -41,12 +41,10 @@ public class TabuleiroAutomatico extends JFrame {
 		this.engine = engine;
 		this.controller = controller;
 		ButtonHandlers handlerButtons = new ButtonHandlers();
-		JButton revivedcells = new JButton("Revived Cells: " // +
-																// String.valueOf(statistics.revivedCells)
-		);
-		JButton killedcells = new JButton("Killed Cells: " // +
-															// String.valueOf(statistics.killedcCells)
-		);
+		
+		JButton revivedcells = new JButton("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()));
+		
+		JButton killedcells = new JButton("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 
 		butoes = new JButton[LINHAS][COLUNAS];
 		JPanel panel = new JPanel();
@@ -59,13 +57,9 @@ public class TabuleiroAutomatico extends JFrame {
 
 		// panels.add(revivedcells);B
 		// panels.add(killedcells);
-		label.setText("Revived Cells: \n" // +
-											// String.valueOf(statistics.revivedCells
-		);
+		label.setText("Revived Cells: \n" + String.valueOf(engine.getStatistics().getRevivedCells()));
 
-		label2.setText("Killed Cells: " // +
-										// String.valueOf(statistics.killedcCells
-		);
+		label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 		panels.setLayout(new GridLayout(3, 1));
 		panels.add(label);
 		panels.add(label2);
@@ -150,7 +144,7 @@ public class TabuleiroAutomatico extends JFrame {
 
 			if (event.getSource() == back) {
 				// JOptionPane.showMessageDialog(null, "Faz alguma coisa! 3");
-				Menu radioButtonFrame = new Menu(engine, controller);
+				Menu radioButtonFrame = new Menu(engine, controller, engine.getStatistics());
 
 				dispose();
 

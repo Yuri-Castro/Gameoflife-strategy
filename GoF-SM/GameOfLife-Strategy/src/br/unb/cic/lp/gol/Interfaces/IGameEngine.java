@@ -11,6 +11,7 @@ public interface IGameEngine {
 	public void chooseEstrategia();
 	public void setEstrategia(EstrategiaDeDerivacao e);
 	public EstrategiaDeDerivacao getEstrategia();
+	public IStatistics getStatistics();
 	public void nextGeneration();
 	public void updateStatistics(List<Cell> mustRevive, List<Cell> mustKill);
 	public void makeCellAlive(int i, int j) throws InvalidParameterException;

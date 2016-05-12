@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import br.unb.cic.lp.gol.Interfaces.IGameController;
 import br.unb.cic.lp.gol.Interfaces.IGameEngine;
+import br.unb.cic.lp.gol.Interfaces.IStatistics;
 
 public class MakeAlive extends JFrame {
 
@@ -28,7 +29,7 @@ public class MakeAlive extends JFrame {
 	public static int LINHAS;
 	private IGameEngine engine;
 	public IGameController controller;
-
+	
 	public MakeAlive(IGameEngine engine, IGameController controller) {
 		super("Game of Life");
 		this.engine = engine;
@@ -111,7 +112,7 @@ public class MakeAlive extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 
 			if (event.getSource() == test) {
-				Menu radioButtonFrame = new Menu(engine, controller);
+				Menu radioButtonFrame = new Menu(engine, controller, engine.getStatistics());
 
 				dispose();
 

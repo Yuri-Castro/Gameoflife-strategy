@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import br.unb.cic.lp.gol.Interfaces.IGameController;
 import br.unb.cic.lp.gol.Interfaces.IGameEngine;
+import br.unb.cic.lp.gol.Interfaces.IStatistics;
 
 public class Tabuleiro extends JFrame {
 
@@ -32,13 +33,15 @@ public class Tabuleiro extends JFrame {
 	private ButtonGroup grupo2;
 	public IGameEngine engine;
 	public IGameController controller;
+	public IStatistics statistics;
 	public static int COLUNAS;
 	public static int LINHAS;
 
-	public Tabuleiro(IGameEngine engine, IGameController controller) {
+	public Tabuleiro(IGameEngine engine, IGameController controller, IStatistics statistics) {
 		super("Game of Life");
 		this.engine = engine;
 		this.controller = controller;
+		this.statistics = statistics;
 		ButtonHandlers handlerButtons = new ButtonHandlers();
 		
 		
@@ -50,13 +53,11 @@ public class Tabuleiro extends JFrame {
 		JLabel label = new JLabel();
 		JLabel label2 = new JLabel();
 	
-		//panels.add(revivedcells);B
+		//panels.add(revivedcells);
 		//panels.add(killedcells);
-		label.setText("Revived Cells: \n" // + String.valueOf(statistics.revivedCells
-				);
+		label.setText("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()) + "\n");
+		label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 		
-		label2.setText("Killed Cells: " //+ String.valueOf(statistics.killedcCells
-		);
 		panels.add(label);
 		panels.add(label2);
 		add(panels,BorderLayout.NORTH);
@@ -109,8 +110,7 @@ public class Tabuleiro extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 
 			if (event.getSource() == back) {
-				// JOptionPane.showMessageDialog(null, "Faz alguma coisa! 3");
-				Menu radioButtonFrame = new Menu(engine, controller);
+				Menu radioButtonFrame = new Menu(engine, controller, statistics);
 
 				dispose();
 
@@ -124,11 +124,13 @@ public class Tabuleiro extends JFrame {
 
 				for (i = 0; i < LINHAS; i++) {
 					for (j = 0; j < COLUNAS; j++) {
-						if (engine.isCellAlive(i, j))
+						if (engine.isCellAlive(i, j)) {
 							butoes[i][j].setBackground(Color.ORANGE);
-						else
+						}
+						else {
 							butoes[i][j].setBackground(Color.BLUE);
-
+						}
+						
 						butoes[i][j].setContentAreaFilled(false);
 						butoes[i][j].setOpaque(true);
 

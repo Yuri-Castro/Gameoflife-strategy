@@ -16,16 +16,19 @@ import javax.swing.JComboBox;
 
 import br.unb.cic.lp.gol.Interfaces.IGameController;
 import br.unb.cic.lp.gol.Interfaces.IGameEngine;
+import br.unb.cic.lp.gol.Interfaces.IStatistics;
 
 public class ComboBox extends JFrame {
 	private IGameEngine engine;
 	private IGameController controller;
+	private IStatistics statistics;
 
-	public ComboBox(final IGameEngine engine, final IGameController controller) {
+	public ComboBox(final IGameEngine engine, final IGameController controller, final IStatistics statistics) {
 
 		super("Game of Life");
 		this.engine = engine;
 		this.controller = controller;
+		this.statistics = statistics;
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel1 = new JPanel();
@@ -67,7 +70,7 @@ public class ComboBox extends JFrame {
 				
 				dispose();
 
-				Menu menu = new Menu(engine, controller);
+				Menu menu = new Menu(engine, controller, statistics);
 			}
 		});
 

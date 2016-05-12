@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import br.unb.cic.lp.gol.GameEngine;
 import br.unb.cic.lp.gol.Interfaces.IGameController;
 import br.unb.cic.lp.gol.Interfaces.IGameEngine;
+import br.unb.cic.lp.gol.Interfaces.IStatistics;
 
 public class Menu extends JFrame {
 	private JRadioButton automatic, semiautomatic, makecellalive, nextgeneration, halt;
@@ -33,11 +34,13 @@ public class Menu extends JFrame {
 	private JRadioButton chooseestrategia;
 	private IGameEngine engine;
 	private IGameController controller;
-
-	public Menu(IGameEngine engine2, IGameController controller) {
+	private IStatistics statistics;
+	
+	public Menu(IGameEngine engine2, IGameController controller, IStatistics statistics) {
 		super("Game of Life");
 		this.engine = engine2;
 		this.controller = controller;
+		this.statistics = statistics;
 		setLayout(new FlowLayout());
 
 		handlerButton = new ButtonHandler();
@@ -106,7 +109,7 @@ public class Menu extends JFrame {
 
 			} else if (event.getSource() == cont && semiautomatic.isSelected()) {
 				dispose();
-				Tabuleiro tab = new Tabuleiro(engine, controller);
+				Tabuleiro tab = new Tabuleiro(engine, controller, statistics);
 
 			} else if (event.getSource() == cont && chooseestrategia.isSelected()) {
 				engine.chooseEstrategia();
