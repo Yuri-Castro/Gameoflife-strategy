@@ -36,6 +36,8 @@ public class Tabuleiro extends JFrame {
 	public IStatistics statistics;
 	public static int COLUNAS;
 	public static int LINHAS;
+	public JLabel label = new JLabel();
+	public JLabel label2 = new JLabel();
 
 	public Tabuleiro(IGameEngine engine, IGameController controller, IStatistics statistics) {
 		super("Game of Life");
@@ -50,13 +52,13 @@ public class Tabuleiro extends JFrame {
 		JPanel panel = new JPanel();
 		JPanel paneld = new JPanel();
 		JPanel panels = new JPanel();
-		JLabel label = new JLabel();
-		JLabel label2 = new JLabel();
+		label.setText("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()) + "\n");
+		label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
+		
 	
 		//panels.add(revivedcells);
 		//panels.add(killedcells);
-		label.setText("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()) + "\n");
-		label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
+	
 		
 		panels.add(label);
 		panels.add(label2);
@@ -117,10 +119,12 @@ public class Tabuleiro extends JFrame {
 			}
 			if (event.getSource() == quit) {
 				dispose();
-
+				System.exit(0);
 			}
 			if (event.getSource() == next) {
 				controller.nextGeneration();
+				label.setText("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()) + "\n");
+				label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 
 				for (i = 0; i < LINHAS; i++) {
 					for (j = 0; j < COLUNAS; j++) {

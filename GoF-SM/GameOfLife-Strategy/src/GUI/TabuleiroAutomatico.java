@@ -34,26 +34,20 @@ public class TabuleiroAutomatico extends JFrame {
 	public static int LINHAS;
 	private boolean pausado = true;
 	public JButton play_pause = new JButton("Play");
-	
+	public JLabel label = new JLabel();
+	public JLabel label2 = new JLabel();
 
 	public TabuleiroAutomatico(IGameEngine engine, IGameController controller) {
 		super("Game of Life");
 		this.engine = engine;
 		this.controller = controller;
 		ButtonHandlers handlerButtons = new ButtonHandlers();
-		
-		JButton revivedcells = new JButton("Revived Cells: " + String.valueOf(engine.getStatistics().getRevivedCells()));
-		
-		JButton killedcells = new JButton("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 
 		butoes = new JButton[LINHAS][COLUNAS];
 		JPanel panel = new JPanel();
-		JPanel paneld = new JPanel(); 
+		JPanel paneld = new JPanel();
 		JPanel panels = new JPanel();
 		JPanel panelf = new JPanel();
-		JLabel label = new JLabel();
-		JLabel label2 = new JLabel();
-		
 
 		// panels.add(revivedcells);B
 		// panels.add(killedcells);
@@ -63,14 +57,14 @@ public class TabuleiroAutomatico extends JFrame {
 		panels.setLayout(new GridLayout(3, 1));
 		panels.add(label);
 		panels.add(label2);
-		//add(panels, BorderLayout.BEFORE_FIRST_LINE);
+		// add(panels, BorderLayout.BEFORE_FIRST_LINE);
 		play_pause.setBackground(Color.GREEN);
 		panels.add(play_pause);
-		
-		add(panels,BorderLayout.NORTH);
-		
+
+		add(panels, BorderLayout.NORTH);
+
 		play_pause.addActionListener(handlerButtons);
-	
+
 		// add(panels,BorderLayout.NORTH);
 
 		for (i = 0; i < LINHAS; i++) {
@@ -117,7 +111,9 @@ public class TabuleiroAutomatico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!pausado) {
 					controller.nextGeneration();
+					label.setText("Revived Cells: \n" + String.valueOf(engine.getStatistics().getRevivedCells()));
 
+					label2.setText("Killed Cells: " + String.valueOf(engine.getStatistics().getKilledCells()));
 					for (i = 0; i < LINHAS; i++) {
 						for (j = 0; j < COLUNAS; j++) {
 							if (engine.isCellAlive(i, j))
@@ -143,28 +139,30 @@ public class TabuleiroAutomatico extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 
 			if (event.getSource() == back) {
+				pausado = true;
 				// JOptionPane.showMessageDialog(null, "Faz alguma coisa! 3");
-				Menu radioButtonFrame = new Menu(engine, controller, engine.getStatistics());
 
 				dispose();
+
+				Menu radioButtonFrame = new Menu(engine, controller, engine.getStatistics());
 
 			}
 			if (event.getSource() == quit) {
-
+				pausado = true;
 				dispose();
-
+				System.exit(0);
 			}
 			if (event.getSource() == play_pause) {
 				if (pausado == true) {
-					
+
 					play_pause.setBackground(Color.RED);
 					play_pause.setText("Pause");
-					
+
 					pausado = false;
 				} else if (pausado == false) {
 					play_pause.setBackground(Color.GREEN);
 					play_pause.setText("PLAY");
-					
+
 					pausado = true;
 				}
 

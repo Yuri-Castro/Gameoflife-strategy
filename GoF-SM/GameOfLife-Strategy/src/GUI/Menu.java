@@ -35,7 +35,7 @@ public class Menu extends JFrame {
 	private IGameEngine engine;
 	private IGameController controller;
 	private IStatistics statistics;
-	
+
 	public Menu(IGameEngine engine2, IGameController controller, IStatistics statistics) {
 		super("Game of Life");
 		this.engine = engine2;
@@ -102,10 +102,8 @@ public class Menu extends JFrame {
 
 			if (event.getSource() == cont && automatic.isSelected()) {
 				dispose();
-				
+
 				TabuleiroAutomatico tab = new TabuleiroAutomatico(engine, controller);
-				
-			
 
 			} else if (event.getSource() == cont && semiautomatic.isSelected()) {
 				dispose();
@@ -123,6 +121,7 @@ public class Menu extends JFrame {
 
 			} else if (event.getSource() == cont && halt.isSelected()) {
 				dispose();
+				System.exit(0);
 
 			}
 
