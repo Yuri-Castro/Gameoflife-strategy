@@ -1,0 +1,24 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\begin{document} 
+\title{GAME OF LIFE}
+\author{ALUNOS: EDUARDO HENRIQUE COSTA MORESI \\E\\ YURI CASTRO DO AMARAL \\
+MATRÍCULAS: 14/0019286 E 14/0033718 \\PROFESSOR: RODRIGO BONIFÁCIO \\TURMA: A}
+\maketitle
+\pagebreak[4]
+
+\section{Como Compilar a Aplicação}
+
+\qquad A aplicação foi implementada utilizando a IDE ``eclipse''. Logo, a forma mais simples de compilar o programa é importando o código para essa plataforma, compilar e rodar normalmente.
+ 
+\section{Features da Aplicação}
+
+\qquad O programa passou por uma reconstrução de forma a garantir maior flexibilização na escolha das regras que utilizadas para calcular os estados do jogo. Para isso, utilizou-se a injeção de dependência juntamente com o padrão de projeto ``Strategy''. 
+
+\quad O Framework selecionado para realizar a injeção de dependência foi o ``google Guice''. Com o suporte de tal ferramenta, definiu-se uma classe ``BindingsForGame'' que continha os ``binds'' (forma que o ``Guice'' usa para vincular as classes) para cada regra, o qual era recuperado através de uma chave, de acordo com a opção digitada pelo usuário. Em caso da opção digitada pelo usuário não ser válida, é lançada uma exceção.
+
+\quad A aplicação ganhou maior flexibilidade pois é possível adicionar novas regras para o cálculo dos estados simlesmente acrescentando a classe necessária e adicionando um ``bind'' com uma chave para essa classe em ``BindingsForGame''.
+
+\end{document}
